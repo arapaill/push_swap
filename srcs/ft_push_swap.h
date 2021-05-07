@@ -19,11 +19,26 @@
 
 typedef struct      s_stack
 {
-    int             pos;
-    int             size;
-    int             
-}                   t_stack
+	int             pos;
+	int             size;
+	struct s_stack	*next;
+}                   t_stack;
 
+/*
+** Errors 
+*/
+void		error_checker(void);
 
+/*
+** Checker
+*/
+
+int		ft_strisnumber(char *str);
+
+/* 
+** Stack init
+*/
+
+void	init_stack_str(int argc, char **argv);
 
 #endif

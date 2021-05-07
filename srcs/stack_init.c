@@ -12,9 +12,10 @@
 
 #include "ft_push_swap.h"
 
-void	init_stack(t_stack *stack, int argc, char **argv)
-{
-	stack.pos = 0;
-	stack.size = argc;
 
+
+void	init_stack_str(int argc, char **argv)
+{
+		if(ft_strisnumber(argv[i]) != 0)
+			
 }

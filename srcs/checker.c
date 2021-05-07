@@ -12,12 +12,6 @@
 
 #include "ft_push_swap.h"
 
-int		error_checker()
-{
-	write(1, "KO", 3);
-		exit;
-}
-
 int		ft_strisnumber(char *str)
 {
 	int		i;
@@ -40,12 +34,14 @@ int		main(int argc, char **argv)
 	int		nb;
 
 	i = 0;
+	if(argc == 1)
+		init_stack_str(argc, argv);
 	if( argc < 2)
-		return (error_checker());
+		error_checker();
 	while(i < argc)
 	{
 		if(ft_strisnumber(argv[i]) != 0)
-			return (error_checker());
+			error_checker();
 		nb = ft_atoi(argv[i]);
 	}
 	write(1, "OK", 3);
