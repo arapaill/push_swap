@@ -20,13 +20,14 @@ t_list				*addstack(int ac, char **av)
 
 	tmp = NULL;
 	list = NULL;
-	while (ac > 1)
+	while (ac >= 0)
 	{
-		content = ft_atoi(av[ac - 1]);
+		content = ft_atoi(av[ac]);
 		tmp = ft_ps_lstnew(content);
 		ft_ps_lstadd(&list, tmp);
 		tmp = NULL;
 		ac--;
 	}
+	//print_list(list);
 	return (list);
 }

@@ -35,6 +35,7 @@ typedef struct		s_stack
 */
 void    	errors(char **av);
 void		error_manager(char *error);
+void		space_check(char *str);
 
 /*
 ** utils
@@ -43,13 +44,16 @@ void	ft_putstr(char *s, int fd);
 int		ft_isdigit(int c);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlen(const char *str);
 
 /* 
 ** Stack init
 */
 
 void		init_stack_str(int argc, char **argv);
-t_list		*addstack(int s, int ac, char **av);
+t_list		*addstack(int ac, char **av);
 
 /*
 ** list
@@ -58,4 +62,5 @@ t_list		*addstack(int s, int ac, char **av);
 void		free_list(t_list *a);
 t_list		*ft_ps_lstnew(int content);
 void		ft_ps_lstadd(t_list **alst, t_list *new);
+void				print_list(t_list *a);
 #endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:43:16 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 14:01:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 16:34:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@ void		error_manager(char *error)
 	exit(2);
 } 
 
-void		ft_isint(char **av)
+void		ft_isint(char **table)
 {
 	int     j;
     int     i;
 
 	j = 0;
-    i = 1;
-	while (av[i])
+    i = 0;
+	while (table[i])
 	{
-		while (av[i][j])
+		printf("table[%i] : %s\n",i,  table[i]);
+		while (table[i][j])
 		{
-			if (av[i][j] == '-')
+			//printf("table[i][j] : %c\n", table[i][j]);
+			if (table[i][j] == '-')
 				j++;
-			if (ft_isdigit(av[i][j]) == 0)
+			if (ft_isdigit(table[i][j]) == 0)
 				error_manager("Error : one argument or more are not int\n");
 			j++;
 		}
@@ -40,31 +42,44 @@ void		ft_isint(char **av)
 	}
 }
 
-void    	dual(char **av)
+void    	dual(char **table)
 {
     int	i;
     int j;
 
-    j = 1;
-	i = 1;
-	while (av[j])
+    j = 0;
+	i = 0;
+	while (table[j])
 	{
-		while (av[i])
+		while (table[i])
 		{
-			if (ft_strcmp(av[i], av[j]) == 0 && i != j)
+			if (ft_strcmp(table[i], table[j]) == 0 && i != j)
 				error_manager("Error : two arguments or more are the same\n");
 			i++;
 		}
 		j++;
-		i = 1;
+		i = 0;
 	}
 }
 
-void    	 errors(char **av)
+void		space_check(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if(!ft_isdigit(str[i]) && str[i] != ' ')
+			error_manager("error : only use spaces and numbers\n");
+		i++;
+	}
+}
+
+void    	 errors(char **table)
 {
     int     i;
     int     error;
 
-    dual(av);
-    ft_isint(av); 
+	ft_isint(table);
+    dual(table);
 }
