@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:13:52 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 15:14:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 17:54:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	**all_free(char **array, int k)
 	}
 	free(array);
 	array = NULL;
-	return (0);
+	error_manager("Malloc error\n");
 }
 
 static int	countword(char const *s, char c)
@@ -64,8 +64,9 @@ static char	**needspace(char **array, char const *s, char c, int i)
 			j++;
 			i++;
 		}
-		if (!(array[k] = malloc(sizeof(char) * (j + 1))))
-			return (all_free(array, k));
+		array[k] = malloc(sizeof(char) * (j + 1));
+			if(!array[k])
+                all_free(array, k);
 		ft_strlcpy(array[k++], s + i - j, j + 1);
 	}
 	array[k] = 0;
@@ -80,7 +81,8 @@ char		**ft_split(char const *s, char c)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	if (!(array = malloc(sizeof(char*) * (countword(s, c) + 1))))
-		return (NULL);
+	array = malloc(sizeof(char*) * (countword(s, c) + 1));
+		if(!array)
+            error_manager("Malloc error\n");
 	return (needspace(array, s, c, i));
 }

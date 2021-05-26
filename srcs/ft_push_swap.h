@@ -63,4 +63,17 @@ void		free_list(t_list *a);
 t_list		*ft_ps_lstnew(int content);
 void		ft_ps_lstadd(t_list **alst, t_list *new);
 void				print_list(t_list *a);
+
+/*
+** operations
+*/
+
+void	ft_swap(t_list *list);
+void	ft_swap_a_b(t_stack *stack);
+void	ft_rotate(t_list *list);
+void	ft_rotate_a_b(t_stack *stack);
+void	ft_double_rotate_a_b(t_stack *stack);
+void	ft_double_rotate(t_list *list);
+void	ft_push_a(t_stack *stack);
+void	ft_push_b(t_stack *stack);
 #endif

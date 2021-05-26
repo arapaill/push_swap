@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 16:52:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 17:56:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ t_list		*ft_ps_lstnew(int content)
 	t_list	*list;
 
 	list = (t_list *)malloc(sizeof(t_list));
-	if (list)
-		if (content)
-			list->content = content;
+	if(!list)
+		error_manager("Malloc error\n");
+	else if (content)
+		list->content = content;
 	return (list);
 }
 
@@ -51,12 +52,12 @@ void				print_list(t_list *a)
 	tmp = a;
 	if (tmp != NULL)
 	{
-		printf("%i\n", tmp->content);
 		while (tmp->next != NULL)
 		{
 			printf("%i\n", tmp->content);
 			tmp = tmp->next;
 		}
+		printf("%i\n", tmp->content);
 		//printf("'%-10s' (%2i) -> %25p\n", (char*)tmp_sys_infos.list_input->content->value, tmp_sys_infos.list_input->content->type, tmp_sys_infos.list_input->next);
 	}
 }

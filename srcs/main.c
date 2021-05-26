@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 16:55:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 17:23:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int     main(int ac, char **av)
     else
         table = table_to_table(ac, av);
     ac = ac - 2;
-    printf("TEST\n");
     errors(table);
     ft_istrione(ac, table);
     //push_swap(ac, av);

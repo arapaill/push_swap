@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:43:16 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 16:34:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/05/26 17:20:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void		ft_isint(char **table)
     i = 0;
 	while (table[i])
 	{
-		printf("table[%i] : %s\n",i,  table[i]);
 		while (table[i][j])
 		{
-			//printf("table[i][j] : %c\n", table[i][j]);
 			if (table[i][j] == '-')
 				j++;
 			if (ft_isdigit(table[i][j]) == 0)
