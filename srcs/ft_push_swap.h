@@ -13,32 +13,49 @@
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 
-# include "libft/libft.h"
 # include <stdio.h>
 # include <limits.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct      s_stack
+typedef struct		s_list
 {
-	int             pos;
-	int             size;
-	struct s_stack	*next;
-}                   t_stack;
+	int				content;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct		s_stack
+{
+	t_list			*a;
+	t_list			*b;
+}					t_stack;
 
 /*
 ** Errors 
 */
-void		error_checker(void);
+void    	errors(char **av);
+void		error_manager(char *error);
 
 /*
-** Checker
+** utils
 */
-
-int		ft_strisnumber(char *str);
+void	ft_putstr(char *s, int fd);
+int		ft_isdigit(int c);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_atoi(const char *str);
 
 /* 
 ** Stack init
 */
 
-void	init_stack_str(int argc, char **argv);
+void		init_stack_str(int argc, char **argv);
+t_list		*addstack(int s, int ac, char **av);
 
+/*
+** list
+*/
+
+void		free_list(t_list *a);
+t_list		*ft_ps_lstnew(int content);
+void		ft_ps_lstadd(t_list **alst, t_list *new);
 #endif

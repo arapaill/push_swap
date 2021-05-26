@@ -12,10 +12,21 @@
 
 #include "ft_push_swap.h"
 
-
-
-void	init_stack_str(int argc, char **argv)
+t_list				*addstack(int ac, char **av)
 {
-		if(ft_strisnumber(argv[i]) != 0)
-			
+	t_list	*tmp;
+	t_list	*list;
+	int		content;
+
+	tmp = NULL;
+	list = NULL;
+	while (ac > 1)
+	{
+		content = ft_atoi(av[ac - 1]);
+		tmp = ft_ps_lstnew(content);
+		ft_ps_lstadd(&list, tmp);
+		tmp = NULL;
+		ac--;
+	}
+	return (list);
 }
