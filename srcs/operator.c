@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:37:11 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 19:09:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/03 14:53:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ void	ft_rotate_a_b(t_stack *stack)
 	ft_rotate(stack->b);
 }
 
-void	ft_double_rotate_a_b(t_stack *stack)
-{
-	ft_double_rotate(stack->a);
-	ft_double_rotate(stack->b);
-}
-
 void	ft_double_rotate(t_list *list)
 {
 	t_list	*head;
@@ -78,6 +72,13 @@ void	ft_double_rotate(t_list *list)
 		tmp->next = list;
 		list = tmp;
 	}
+}
+
+
+void	ft_double_rotate_a_b(t_stack *stack)
+{
+	ft_double_rotate(stack->a);
+	ft_double_rotate(stack->b);
 }
 
 void	ft_push_a(t_stack *stack)

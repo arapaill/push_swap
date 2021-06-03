@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void    push_swap(int ac, char **table)
+#include "ft_push_swap.h"
+
+void    push_swap(int size, char **table)
 {
-    
+    t_stack stack;
+
+    stack.a = addstack(size, table);
+    stack.b = NULL;
 }

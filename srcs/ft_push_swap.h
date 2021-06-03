@@ -33,47 +33,48 @@ typedef struct		s_stack
 /*
 ** Errors 
 */
-void    	errors(char **av);
-void		error_manager(char *error);
-void		space_check(char *str);
+void    			errors(char **table);
+void				error_manager(char *error);
+void				space_check(char *str);
 
 /*
 ** utils
 */
-void	ft_putstr(char *s, int fd);
-int		ft_isdigit(int c);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_atoi(const char *str);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	**ft_split(char const *s, char c);
-size_t	ft_strlen(const char *str);
+void				ft_putstr(char *s, int fd);
+int					ft_isdigit(int c);
+int					ft_strcmp(char *s1, char *s2);
+int					ft_atoi(const char *str);
+size_t				ft_strlcpy(char *dst, const char *src, size_t size);
+char				**ft_split(char const *s, char c);
+size_t				ft_strlen(const char *str);
 
 /* 
 ** Stack init
 */
 
-void		init_stack_str(int argc, char **argv);
-t_list		*addstack(int ac, char **av);
+void				init_stack_str(int argc, char **argv);
+t_list				*addstack(int ac, char **table);
 
 /*
 ** list
 */
 
-void		free_list(t_list *a);
-t_list		*ft_ps_lstnew(int content);
-void		ft_ps_lstadd(t_list **alst, t_list *new);
+void				free_list(t_list *a);
+t_list				*ft_ps_lstnew(int content);
+void				ft_ps_lstadd(t_list **alst, t_list *new);
 void				print_list(t_list *a);
 
 /*
 ** operations
 */
 
-void	ft_swap(t_list *list);
-void	ft_swap_a_b(t_stack *stack);
-void	ft_rotate(t_list *list);
-void	ft_rotate_a_b(t_stack *stack);
-void	ft_double_rotate_a_b(t_stack *stack);
-void	ft_double_rotate(t_list *list);
-void	ft_push_a(t_stack *stack);
-void	ft_push_b(t_stack *stack);
+void				ft_swap(t_list *list);
+void				ft_swap_a_b(t_stack *stack);
+void				ft_rotate(t_list *list);
+void				ft_rotate_a_b(t_stack *stack);
+void				ft_double_rotate_a_b(t_stack *stack);
+void				ft_double_rotate(t_list *list);
+void				ft_push_a(t_stack *stack);
+void				ft_push_b(t_stack *stack);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 17:23:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/03 15:23:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int		ft_istri(t_list *a)
 	return (1);
 }
 
-void	ft_istrione(int ac, char **av)
+void	ft_istrione(int size, char **table)
 {
 	t_stack	stack;
     
-	stack.a = addstack(ac, av);
+	stack.a = addstack(size, table);
 	stack.b = NULL;
 	if (ft_istri(stack.a) == 1)
 	{
         printf("is sorted\n");
-		free_list(stack.a);
-		exit (1);
+        free_list(stack.a);
+        exit(1);
 	}
     free_list(stack.a);
 }
@@ -70,9 +70,21 @@ char    **table_to_table(int ac, char **av)
     return(table);
 }
 
+int     counter(char **table)
+{
+    int     i;
+
+    i = 0;
+    while (table[i])
+        i++;
+    i--;
+    return(i);
+}
+
 int     main(int ac, char **av)
 {
     char    **table;
+    int     size;
 
 	if(ac == 1)
         error_manager("too few argument\n");
@@ -83,9 +95,9 @@ int     main(int ac, char **av)
     }
     else
         table = table_to_table(ac, av);
-    ac = ac - 2;
     errors(table);
-    ft_istrione(ac, table);
+    size = counter(table);
+    ft_istrione(size, table);
     //push_swap(ac, av);
     return(0);
 }

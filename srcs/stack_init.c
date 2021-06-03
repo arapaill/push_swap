@@ -12,7 +12,7 @@
 
 #include "ft_push_swap.h"
 
-t_list				*addstack(int ac, char **av)
+t_list				*addstack(int size, char **table)
 {
 	t_list	*tmp;
 	t_list	*list;
@@ -20,14 +20,14 @@ t_list				*addstack(int ac, char **av)
 
 	tmp = NULL;
 	list = NULL;
-	while (ac >= 0)
+	while (size >= 0)
 	{
-		content = ft_atoi(av[ac]);
+		content = ft_atoi(table[size]);
 		tmp = ft_ps_lstnew(content);
 		ft_ps_lstadd(&list, tmp);
 		tmp = NULL;
-		ac--;
+		size--;
 	}
-	//print_list(list);
+	//print_list(table);
 	return (list);
 }
