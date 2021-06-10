@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 17:56:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 16:51:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,41 @@ void		free_list(t_list *a)
 	while (a)
 	{
 		tmp = a->next;
+		a = NULL;
 		free(a);
 		a = tmp;
 	}
 }
 
-t_list		*ft_ps_lstnew(int content)
+t_list		*ft_ps_lstnew(void *content)
 {
 	t_list	*list;
 
 	list = (t_list *)malloc(sizeof(t_list));
 	if(!list)
 		error_manager("Malloc error\n");
-	else if (content)
-		list->content = content;
+	list->content = content;
+	list->next = NULL;
 	return (list);
+}	
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 
 void		ft_ps_lstadd(t_list **alst, t_list *new)
 {
-	if (new)
-	{
-		new->next = *alst;
+	if (new == NULL)
+		return ;
+	if (*alst == NULL)
 		*alst = new;
-	}
+	else
+		ft_lstlast(*alst)->next = new;
 }
 
 void				print_list(t_list *a)
@@ -54,10 +65,9 @@ void				print_list(t_list *a)
 	{
 		while (tmp->next != NULL)
 		{
-			printf("%i\n", tmp->content);
+			printf("%i",(int)tmp->content);
 			tmp = tmp->next;
 		}
-		printf("%i\n", tmp->content);
-		//printf("'%-10s' (%2i) -> %25p\n", (char*)tmp_sys_infos.list_input->content->value, tmp_sys_infos.list_input->content->type, tmp_sys_infos.list_input->next);
+		printf("%i\n",(int)tmp->content);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/03 15:23:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 15:40:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,19 @@ int		ft_istri(t_list *a)
 
 void	ft_istrione(int size, char **table)
 {
-	t_stack	stack;
+	t_stack	*stack;
     
-	stack.a = addstack(size, table);
-	stack.b = NULL;
-	if (ft_istri(stack.a) == 1)
+    stack = malloc(sizeof(t_stack *));
+    if(!stack)
+        error_manager("Malloc error\n");
+	addstack(size, table, &stack->a);
+	if (ft_istri(stack->a) == 1)
 	{
         printf("is sorted\n");
-        free_list(stack.a);
+        free_list(stack->a);
         exit(1);
 	}
-    free_list(stack.a);
+    free_list(stack->a);
 }
 
 char    **table_to_table(int ac, char **av)
@@ -97,7 +99,8 @@ int     main(int ac, char **av)
         table = table_to_table(ac, av);
     errors(table);
     size = counter(table);
+    //printf("TEST 1\n");
     ft_istrione(size, table);
-    //push_swap(ac, av);
+    push_swap(size, table);
     return(0);
 }

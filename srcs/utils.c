@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:34:29 by user42            #+#    #+#             */
-/*   Updated: 2021/05/26 16:51:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 17:18:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,52 +47,59 @@ int		ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-static int		ft_sign(const char *str)
+static int		ispace(const char *str, int *j)
 {
-	int i;
+	int						i;
+	int						neg;
 
 	i = 0;
-	while (str[i] != '\0' && (str[i] < 49 || str[i] > 57))
+	neg = 0;
+	while (str[i] == '\0' ||
+			str[i] == '\t' ||
+			str[i] == '\n' ||
+			str[i] == '\v' ||
+			str[i] == '\f' ||
+			str[i] == '\r' ||
+			str[i] == ' ')
+		i++;
+	if (str[i] == '-')
 	{
-		if (str[i] == 45 && ft_isdigit(str[i + 1]) != 0)
-		{
+		neg = 1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	*j = i;
+	return (neg);
+}
+
+long long			ft_atoi(const char *str)
+{
+	int			i;
+	int			neg;
+	long long 	n;
+	long long	min;
+
+	min = 9223372036854775807;
+	n = 0;
+	i = 0;
+	neg = ispace(str, &i);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n + (str[i] - '0');
+		n = n * 10;
+		i++;
+		if (n >= (min + 1) && neg == 1)
+			return (0);
+		else if (n >= 9223372036854775807 && neg == 0)
 			return (-1);
-		}
-		else if ((str[i] == 45 || str[i] == 43) &&
-				(str[i + 1] == 45 || str[i + 1] == 43))
-		{
-			return (0);
-		}
-		i++;
 	}
-	return (1);
+	n = n / 10;
+	if (neg == 1)
+		return (n * (-1));
+	else
+		return (n);
 }
-
-int				ft_atoi(const char *str)
-{
-	int i;
-	int res;
-	int sign;
-
-	sign = ft_sign(str);
-	res = 0;
-	i = 0;
-	while (str[i] == '\n' || str[i] == '\v' || str[i] == '\t' || str[i] == '\r'
-			|| str[i] == '\f' || str[i] == '-' || str[i] == '+'
-			|| str[i] == ' ')
-	{
-		if ((str[i] == '-' || str[i] == '+') && str[i + 1] == ' ')
-			return (0);
-		i++;
-	}
-	while (ft_isdigit(str[i]) != 0)
-	{
-		res = (res * 10) + (str[i] - 48);
-		i++;
-	}
-	return (res * sign);
-}
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t i;
