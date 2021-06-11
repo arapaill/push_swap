@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:34:29 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 17:18:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 17:27:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ long long			ft_atoi(const char *str)
 	long long 	n;
 	long long	min;
 
-	min = 9223372036854775807;
+	min = 2147483647;
 	n = 0;
 	i = 0;
 	neg = ispace(str, &i);
@@ -90,9 +90,9 @@ long long			ft_atoi(const char *str)
 		n = n * 10;
 		i++;
 		if (n >= (min + 1) && neg == 1)
-			return (0);
-		else if (n >= 9223372036854775807 && neg == 0)
-			return (-1);
+			error_manager("error, number too small\n");
+		else if (n >= min && neg == 0)
+			error_manager("error, number too big\n");
 	}
 	n = n / 10;
 	if (neg == 1)

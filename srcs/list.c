@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 16:51:34 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 13:49:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		free_list(t_list *a)
 	}
 }
 
-t_list		*ft_ps_lstnew(void *content)
+t_list		*ft_ps_lstnew(int	content)
 {
 	t_list	*list;
 
@@ -65,7 +65,7 @@ void				print_list(t_list *a)
 	{
 		while (tmp->next != NULL)
 		{
-			printf("%i",(int)tmp->content);
+			printf("%i",tmp->content);
 			tmp = tmp->next;
 		}
 		printf("%i\n",(int)tmp->content);

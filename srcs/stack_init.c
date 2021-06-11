@@ -28,7 +28,7 @@ void	init_stack(t_stack *stack)
 void		addstack(int size, char **table, t_list **list)
 {
 	t_list	*tmp;
-	void	*content;
+	int		content;
 	int		i;
 
 	tmp = NULL;
@@ -36,9 +36,6 @@ void		addstack(int size, char **table, t_list **list)
 	while (i <= size)
 	{
 		content = ft_atoi(table[i]);
-		printf("content %i\n",content);
-		//if(content > INT_MAX)
-			//error_manager("number too big\n");
 		tmp = ft_ps_lstnew(content);
 		ft_ps_lstadd(list, tmp);
 		free_list(tmp);
