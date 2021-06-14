@@ -104,7 +104,7 @@ void    hardcoding(int size, t_stack **stack)
         case_5(stack);
 }
 
-int		find_max_skip(t_list *list, int skip)
+int					find_max_skip(t_list *list, int skip)
 {
 	int	max;
 
@@ -121,16 +121,16 @@ int		find_max_skip(t_list *list, int skip)
 }
 
 
-static void		push_max(t_stack **stack, t_info *info)
+static void		push_max(t_stack **stack, t_info *info, int max)
 {
 	int	f;
 
 	f = 0;
-	if ((*stack)->b->content < info->max_a)
+	if ((*stack)->b->content < max)
 	{
-		while ((*stack)->b->content != info->max_a)
+		while ((*stack)->b->content != max)
 		{
-			if ((*stack)->b->next->content == info->max_a)
+			if ((*stack)->b->next->content == max)
 			{
 				do_sb(&(*stack)->b);
 				do_pa(stack);
@@ -178,13 +178,13 @@ static void		push_a(t_stack **stack, t_info *info)
 				((info->pos_a > info->pos_b && info->flags_a) ||
 				(info->pos_a < info->pos_b && !info->flags_a)))
 		{
-			push_max(stack, info);
-			push_max(stack, info);
+			push_max(stack, info, info->max_a);
+			push_max(stack, info, info->max_b);
 			do_sa(&(*stack)->a);
 			info->size_b--;
 		}
 		else
-			push_max(stack, info);
+			push_max(stack, info, info->max_b);
 		info->size_b--;
 	}
 	printf("PUSH_A\n");
@@ -192,7 +192,7 @@ static void		push_a(t_stack **stack, t_info *info)
 
 static void		opti_rotation(int tmp ,t_stack **stack, t_info **info)
 {
-	while ((*info)->size_a > 2)
+	while (tmp && (*info)->size_a > 2)
 	{
 		if ((*stack)->a->content <= (*info)->median)
 		{
@@ -214,23 +214,24 @@ static void		opti_rotation(int tmp ,t_stack **stack, t_info **info)
 	}
 }
 
-int				resolve(int size, t_stack **stack, t_info *info)
+int				resolve(t_stack **stack, t_info *info)
 {
 	int		tmp;
     int     size_b;
 
-    info->size_a = size;
+    info->size_a = ft_lstsize((*stack)->a);
     info->size_b = 0;
 	while (info->size_a > 2)
 	{
 		info->median = find_median((*stack)->a, info->size_a);
-		tmp = info->size_b;
+		tmp = info->size_a;
 		opti_rotation(tmp, stack, &info);
 	}
 	do_pb(stack);
 	do_pb(stack);
 	info->size_b += 2;
 	push_a(stack, info);
+	print_list((*stack)->a);
 	return (1);
 }
 
@@ -248,5 +249,5 @@ void    push_swap(int size, char **table)
     if(size <= 4)
         hardcoding(size, &stack);
     else
-        resolve(size, &stack, info);
+        resolve(&stack, info);
 }

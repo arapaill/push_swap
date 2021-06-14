@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/14 16:35:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 19:05:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ void				print_list(t_list *a)
 	t_list	*tmp;
 	
 	tmp = a;
-	if (tmp != NULL)
+	if (tmp)
 	{
-		while (tmp->next != NULL)
+		while (tmp && tmp->next)
 		{
-			printf("%i",tmp->content);
+			printf("%i\n",tmp->content);
 			tmp = tmp->next;
 		}
 		printf("%i\n",(int)tmp->content);
