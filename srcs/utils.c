@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:34:29 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 17:27:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 15:08:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ long long			ft_atoi(const char *str)
 	else
 		return (n);
 }
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t i;
@@ -128,4 +129,11 @@ size_t		ft_strlen(const char *str)
 	return (i);
 }
 
+void	lib_swap(int *a, int *b)
+{
+	int	tmp;
 
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}

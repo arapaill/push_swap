@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/11 13:49:56 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 16:35:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,19 @@ void				print_list(t_list *a)
 		}
 		printf("%i\n",(int)tmp->content);
 	}
+}
+
+int		ft_lstsize(t_list *lst)
+{
+	int i;
+
+	if (lst == NULL)
+		return (0);
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

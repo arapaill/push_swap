@@ -31,6 +31,20 @@ typedef struct		s_stack
 	t_list			*b;
 }					t_stack;
 
+typedef	struct		s_info
+{
+	int				median;
+	int				size_b;
+	int				size_a;
+	int				max_a;
+	int				max_b;
+	int				flags;
+	int				flags_a;
+	int				flags_b;
+	int				pos_a;
+	int				pos_b;
+}					t_info;
+
 /*
 ** main
 */
@@ -54,6 +68,7 @@ long long			ft_atoi(const char *str);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 char				**ft_split(char const *s, char c);
 size_t				ft_strlen(const char *str);
+void				lib_swap(int *a, int *b);
 
 /* 
 ** Stack init
@@ -71,6 +86,7 @@ t_list				*ft_ps_lstnew(int	content);
 void				ft_ps_lstadd(t_list **alst, t_list *new);
 void				print_list(t_list *a);
 t_list				*ft_lstlast(t_list *lst);
+int					ft_lstsize(t_list *lst);
 
 /*
 ** operations
@@ -96,4 +112,10 @@ void				do_rrb(t_list **list);
 ** push_swap
 */
 void    push_swap(int size, char **table);
+
+/*
+** find_median
+*/
+
+int			find_median(t_list *list, int size);
 #endif
