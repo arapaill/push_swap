@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 15:40:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 12:21:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int     counter(char **table)
 int     main(int ac, char **av)
 {
     char    **table;
+    t_info  *info;
+    t_list  *list_a;
     int     size;
 
 	if(ac == 1)
@@ -101,6 +103,10 @@ int     main(int ac, char **av)
     size = counter(table);
     //printf("TEST 1\n");
     ft_istrione(size, table);
-    push_swap(size, table);
+    info = malloc(sizeof(t_info *));
+    if(!info)
+        error_manager("Malloc error\n");
+    addstack(size, table, &list_a);
+    push_swap(&list_a, info);
     return(0);
 }

@@ -12,104 +12,13 @@
 
 #include "ft_push_swap.h"
 
-void    case_3(t_stack **stack)
-{
-    while (!ft_istri((*stack)->a))
-    {
-        if((*stack)->a->content > (*stack)->a->next->content)
-            do_sa(&(*stack)->a);
-        if(!ft_istri((*stack)->a))
-            do_ra(&(*stack)->a);
-    }
-}
-
-long int    find_min(t_list **list)
-{
-    t_list *begin;
-    int      ret;
-
-    ret = (int)(*list)->content;
-    begin = (*list);
-    while ((*list) != NULL)
-    {
-        if ((*list)->content < ret)
-            ret = (int)(*list)->content;
-        (*list) = (*list)->next;
-    }
-    (*list) = begin;
-    return (ret);
-}
-
-long int    find_max(t_list **list)
-{
-    t_list *begin;
-    int      ret;
-
-    ret = (int)(*list)->content;
-    begin = (*list);
-    while ((*list) != NULL)
-    {
-        if ((*list)->content > ret)
-            ret = (int)(*list)->content;
-        (*list) = (*list)->next;
-    }
-    (*list) = begin;
-    return (ret);
-}
-
-
-void    case_4(t_stack **stack)
-{
-    int min;
-
-    min = find_min(&(*stack)->a);
-    while ((int)(*stack)->a->content != min)
-        do_ra(&(*stack)->a);
-    do_pb(stack);
-    case_3(stack);
-    do_pa(stack);
-    do_ra(&(*stack)->a);
-}
-
-
-void    case_5(t_stack **stack)
-{
-	long int	max;
-
-	while (ft_lstsize((*stack)->a) != 3)
-	{
-		max = find_max(&(*stack)->a);
-		while ((*stack)->a->content != max)
-			do_ra(&(*stack)->a);
-		if ((*stack)->a->content == max)
-			do_pb(stack);
-	}
-	case_3(stack);
-    if ((*stack)->b->content > (*stack)->b->next->content)
-		do_sb(&(*stack)->b);
-	do_pa(stack);
-	do_pa(stack);
-	return ;
-}
-
-void    hardcoding(int size, t_stack **stack)
-{
-    if(size == 1)
-        do_sa(&(*stack)->a);
-    else if(size == 2)
-        case_3(stack);
-    else if(size == 3)
-        case_4(stack);
-    else if (size == 4)
-        case_5(stack);
-}
 
 int					find_max_skip(t_list *list, int skip)
 {
 	int	max;
 
-	max = -2147483648;
-	while (list->next && list->next->content)
+	max = INT_MIN;
+	while (list->next)
 	{
 		if (list->content > max && list->content != skip)
 			max = list->content;
@@ -121,30 +30,30 @@ int					find_max_skip(t_list *list, int skip)
 }
 
 
-static void		push_max(t_stack **stack, t_info *info, int max)
+static void		push_max(t_list **list_a, t_list **list_b, t_info *info, int max)
 {
 	int	f;
 
 	f = 0;
-	if ((*stack)->b->content < max)
+	if ((*list_b)->content < max)
 	{
-		while ((*stack)->b->content != max)
+		while ((*list_b)->content != max)
 		{
-			if ((*stack)->b->next->content == max)
+			if ((*list_b)->next->content == max)
 			{
-				do_sb(&(*stack)->b);
-				do_pa(stack);
+				do_sb(*list_b);
+				do_pa(list_a, list_b);
 				f = 1;
 				break ;
 			}
 			if (info->flags == 1)
-				do_rb(&(*stack)->b);
+				do_rb(list_b);
 			else
-				do_rrb(&(*stack)->b);
+				do_rrb(list_b);
 		}
 	}
 	if (!f)	
-		do_pa(stack);
+		do_pa(list_a, list_b);
 }
 
 int		find_pos(int n, t_list *list)
@@ -152,7 +61,7 @@ int		find_pos(int n, t_list *list)
 	int	pos;
 
 	pos = 0;
-	while (list->next && list->content != n)
+	while (list->content != n)
 	{
 		list = list->next;
 		pos++;
@@ -160,94 +69,110 @@ int		find_pos(int n, t_list *list)
 	return (pos);
 }
 
-static void		push_a(t_stack **stack, t_info *info)
+
+static void		push_a(t_list **list_a, t_list **list_b, t_info *info)
 {
 	while (info->size_b)
 	{
+		printf("TEST 1\n");
+		print_all(*list_a, *list_b);
 		info->flags_a = 0;
 		info->flags_b = 0;
-		info->max_b = find_max_skip((*stack)->b, INT_MIN);
-		info->max_a = find_max_skip((*stack)->b, info->max_b);
-		if ((info->pos_a = find_pos(info->max_b, (*stack)->b)) < info->size_b / 2)
+		info->max_b = find_max_skip(*list_b, INT_MIN);
+		info->max_a = find_max_skip(*list_b, info->max_b);
+		printf("TEST 2\n");
+		print_all(*list_a, *list_b);
+		if ((info->pos_a = find_pos(info->max_b, *list_b)) < info->size_b / 2)
 			info->flags_a = 1;
+		printf("TEST 3\n");
+		print_all(*list_a, *list_b);
 		if (info->max_a != INT_MIN && (info->pos_b =
-			find_pos(info->max_a, (*stack)->b)) < info->size_b / 2)
+			find_pos(info->max_a, *list_b)) < info->size_b / 2)
 			info->flags_b = 1;
+		printf("TEST 4\n");
+		print_all(*list_a, *list_b);
 		info->flags = info->flags_a;
+		printf("TEST 5\n");
+		print_all(*list_a, *list_b);
 		if (info->max_a != INT_MIN && info->flags_a == info->flags_b &&
 				((info->pos_a > info->pos_b && info->flags_a) ||
 				(info->pos_a < info->pos_b && !info->flags_a)))
 		{
-			push_max(stack, info, info->max_a);
-			push_max(stack, info, info->max_b);
-			do_sa(&(*stack)->a);
+			printf("TEST 6\n");
+			print_all(*list_a, *list_b);
+			push_max(list_a, list_b, info, info->max_a);
+			printf("TEST 7\n");
+			print_all(*list_a, *list_b);
+			push_max(list_a, list_b, info, info->max_b);
+			printf("TEST 8\n");
+			print_all(*list_a, *list_b);
+			do_sa(*list_a);
+			printf("TEST 9\n");
+			print_all(*list_a, *list_b);
 			info->size_b--;
 		}
 		else
-			push_max(stack, info, info->max_b);
+			push_max(list_a, list_b, info, info->max_b);
 		info->size_b--;
 	}
 	printf("PUSH_A\n");
 }
 
-static void		opti_rotation(int tmp ,t_stack **stack, t_info **info)
+static void		opti_rotation(int tmp, t_list **list_a, t_list **list_b,
+				t_info **info)
 {
 	while (tmp && (*info)->size_a > 2)
 	{
-		if ((*stack)->a->content <= (*info)->median)
+		if ((*list_a)->content <= (*info)->median)
 		{
-			do_pb(stack);
-			if ((*stack)->b->content < find_median((*stack)->b, (*info)->size_b) &&
+			do_pb(list_a, list_b);
+			if ((*list_b)->content < find_median(*list_b, (*info)->size_b) &&
 					(*info)->size_b > 1)
 			{
-				if ((*stack)->a->content > (*info)->median)
-					do_rr(stack);
+				if ((*list_a)->content > (*info)->median)
+					do_rr(list_a, list_b);
 				else
-					do_rb(&(*stack)->b);
+					do_rb(list_b);
 			}
 			(*info)->size_b++;
 			(*info)->size_a--;
 		}
 		else
-			do_ra(&(*stack)->a);
+			do_ra(list_a);
 		tmp--;
 	}
 }
 
-int				resolve(t_stack **stack, t_info *info)
+int				resolve(t_list **list_a, t_list **list_b, t_info *info)
 {
 	int		tmp;
-    int     size_b;
 
-    info->size_a = ft_lstsize((*stack)->a);
-    info->size_b = 0;
 	while (info->size_a > 2)
 	{
-		info->median = find_median((*stack)->a, info->size_a);
+		info->median = find_median(*list_a, info->size_a);
 		tmp = info->size_a;
-		opti_rotation(tmp, stack, &info);
+		opti_rotation(tmp, list_a, list_b, &info);
 	}
-	do_pb(stack);
-	do_pb(stack);
+	do_pb(list_a, list_b);
+	do_pb(list_a, list_b);
 	info->size_b += 2;
-	push_a(stack, info);
-	print_list((*stack)->a);
+	push_a(list_a, list_b, info);
+	free(info);
 	return (1);
 }
 
-void    push_swap(int size, char **table)
+void    push_swap(t_list **list_a, t_info *info)
 {
-    t_stack	*stack;
-    t_info  *info;
 
-    info = malloc(sizeof(t_info *));
-    stack = malloc(sizeof(t_stack *));
-    if(!stack || !info)
-        error_manager("Malloc error\n");
-    addstack(size, table, &stack->a);
-    print_list(stack->a);
-    if(size <= 4)
-        hardcoding(size, &stack);
+	t_list *list_b;
+
+	list_b = NULL;
+	info->size_a = ft_lstsize(*list_a);
+    info->size_b = 0;
+    print_list(*list_a);
+    if(info->size_a <= 5)
+        hardcoding(info->size_a, list_a, &list_b);
     else
-        resolve(&stack, info);
+        resolve(list_a, &list_b, info);
+	print_list(*list_a);
 }

@@ -6,24 +6,24 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:37:11 by user42            #+#    #+#             */
-/*   Updated: 2021/06/14 17:02:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 14:30:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	ft_swap(t_list **list)
+void	ft_swap(t_list *list)
 {
-	if (!(*list))
+	if (!list)
 		return ;
-	if ((*list)->next)
-		lib_swap(&(*list)->content, &(*list)->next->content);
+	if (list->next)
+		lib_swap(&list->content, &list->next->content);
 }
 
-void	do_ss(t_stack **stack)
+void	do_ss(t_list **list_a, t_list **list_b)
 {
-	ft_swap(&(*stack)->a);
-	ft_swap(&(*stack)->b);
+	ft_swap(*list_a);
+	ft_swap(*list_b);
 	printf("ss\n");
 }
 
@@ -44,13 +44,13 @@ void	ft_double_rotate(t_list **list)
 	}
 	cp->next = NULL;
 	tmp->next = *list;
-	*list = tmp;
+	*list= tmp;
 }
 
-void	do_rr(t_stack **stack)
+void	do_rr(t_list **list_a, t_list **list_b)
 {
-	ft_rotate(&(*stack)->a);
-	ft_rotate(&(*stack)->b);
+	ft_rotate(list_a);
+	ft_rotate(list_b);
 	printf("rr\n");
 }
 
@@ -71,35 +71,35 @@ void	ft_rotate(t_list **list)
 }
 
 
-void	do_rrr(t_stack **stack)
+void	do_rrr(t_list **list_a, t_list **list_b)
 {
-	ft_double_rotate(&(*stack)->a);
-	ft_double_rotate(&(*stack)->b);
+	ft_double_rotate(list_a);
+	ft_double_rotate(list_b);
 	printf("rrr\n");
 }
 
-void	do_pa(t_stack **stack)
+void	do_pa(t_list **list_a, t_list  **list_b)
 {
-    t_list *tmp;
-    
-	if (!(*stack)->b)
+	t_list	*tmp;
+
+	if (!(*list_b))
 		return ;
-	tmp = (*stack)->b;
-	(*stack)->b = (*stack)->b->next;
-	tmp->next = (*stack)->a;
-	(*stack)->a = tmp;
+	tmp = *list_b;
+	*list_b = (*list_b)->next;
+		tmp->next = *list_a;
+	*list_a = tmp;
 	printf("pa\n");
 }
 
-void	do_pb(t_stack **stack)
+void	do_pb(t_list **list_a, t_list  **list_b)
 {
-     t_list *tmp;
-    
-	if (!(*stack)->a)
+	t_list	*tmp;
+
+	if (!(*list_a))
 		return ;
-	tmp = (*stack)->a;
-	(*stack)->a = (*stack)->a->next;
-	tmp->next = (*stack)->b;
-	(*stack)->b = tmp;
+	tmp = *list_a;
+	*list_a = (*list_a)->next;
+	tmp->next = *list_b;
+	*list_b = tmp;
 	printf("pb\n");
 }

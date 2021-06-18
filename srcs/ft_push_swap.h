@@ -85,6 +85,7 @@ void				free_list(t_list *a);
 t_list				*ft_ps_lstnew(int	content);
 void				ft_ps_lstadd(t_list **alst, t_list *new);
 void				print_list(t_list *a);
+void				print_all(t_list *a, t_list *b);
 t_list				*ft_lstlast(t_list *lst);
 int					ft_lstsize(t_list *lst);
 
@@ -92,16 +93,16 @@ int					ft_lstsize(t_list *lst);
 ** operations
 */
 
-void				ft_swap(t_list **list);
-void				do_ss(t_stack **stack);
+void				ft_swap(t_list *list);
+void				do_ss(t_list **list_a, t_list **list_b);
 void				ft_rotate(t_list **list);
-void				do_rrr(t_stack **stack);
-void				do_rr(t_stack **stack);
+void				do_rrr(t_list **list_a, t_list **list_b);
+void				do_rr(t_list **list_a, t_list **list_b);
 void				ft_double_rotate(t_list **list);
-void				do_pa(t_stack **stack);
-void				do_pb(t_stack **stack);
-void				do_sa(t_list **list);
-void				do_sb(t_list **list);
+void				do_pa(t_list **list_a, t_list  **list_b);
+void				do_pb(t_list **list_a, t_list  **list_b);
+void				do_sa(t_list *list);
+void				do_sb(t_list *list);
 void				do_ra(t_list **list);
 void				do_rb(t_list **list);
 void				do_rra(t_list **list);
@@ -111,7 +112,8 @@ void				do_rrb(t_list **list);
 /*
 ** push_swap
 */
-void    push_swap(int size, char **table);
+void    push_swap(t_list **list_a, t_info *info);
+void    hardcoding(int size, t_list **list_a, t_list **list_b);
 
 /*
 ** find_median

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/14 19:05:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 14:17:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ void		ft_ps_lstadd(t_list **alst, t_list *new)
 		ft_lstlast(*alst)->next = new;
 }
 
+void				print_all(t_list *a, t_list *b)
+{
+	printf("list a :");
+	print_list(a);
+	printf("\n");
+	printf("list b :");
+	print_list(b);
+	printf("\n");
+}
+
 void				print_list(t_list *a)
 {
 	t_list	*tmp;
@@ -65,7 +75,7 @@ void				print_list(t_list *a)
 	{
 		while (tmp && tmp->next)
 		{
-			printf("%i\n",tmp->content);
+			printf("%i",tmp->content);
 			tmp = tmp->next;
 		}
 		printf("%i\n",(int)tmp->content);
