@@ -36,14 +36,19 @@ typedef	struct		s_info
 	int				median;
 	int				size_b;
 	int				size_a;
+	int				flags;
+
+}					t_info;
+
+typedef	struct		s_data
+{
 	int				max_a;
 	int				max_b;
-	int				flags;
 	int				flags_a;
 	int				flags_b;
 	int				pos_a;
 	int				pos_b;
-}					t_info;
+}					t_data;
 
 /*
 ** main
@@ -113,7 +118,7 @@ void				do_rrb(t_list **list);
 ** push_swap
 */
 void    push_swap(t_list **list_a, t_info *info);
-void    hardcoding(int size, t_list **list_a, t_list **list_b);
+void    hardcoding(int size, t_list **list_a);
 
 /*
 ** find_median

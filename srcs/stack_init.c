@@ -33,6 +33,7 @@ void		addstack(int size, char **table, t_list **list)
 
 	tmp = NULL;
 	i = 0;
+	printf("size : %i\n", size);
 	while (i <= size)
 	{
 		content = ft_atoi(table[i]);
@@ -41,5 +42,5 @@ void		addstack(int size, char **table, t_list **list)
 		free_list(tmp);
 		i++;
 	}
-	//print_list((*list));
+	print_list((*list));
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/06/18 14:24:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/22 16:03:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,18 @@ void    case_5(t_list **list_a, t_list **list_b)
 	return ;
 }
 
-void    hardcoding(int size, t_list **list_a, t_list **list_b)
+void    hardcoding(int size, t_list **list_a)
 {
+    t_list *list_b;
+
+    list_b = 0;
     printf("size : %i\n", size);
     if(size == 2)
         do_sa(*list_a);
     else if(size == 3)
         case_3(list_a);
     else if(size == 4)
-        case_4(list_a, list_b);
+        case_4(list_a, &list_b);
     else if (size == 5)
-        case_5(list_a, list_b);
+        case_5(list_a, &list_b);
 }
