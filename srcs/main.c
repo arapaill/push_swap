@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:56:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 19:18:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    push_swap(t_list **list_a, t_info *info)
         hardcoding(info->size_a, list_a);
     else
         resolve(list_a, info);
-	print_list(*list_a);
+	//print_list(*list_a);
 }
 
 int		ft_istri(t_list *a)

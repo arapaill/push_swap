@@ -90,6 +90,7 @@ static void		opti_rotation(int tmp, t_list **li_a, t_list **li_b,
 			do_ra(li_a);
 		tmp--;
 	}
+	//print_all(*li_a, *li_b);
 }
 
 int				resolve(t_list **list_a, t_info *info)
