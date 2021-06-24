@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 15:13:52 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:54:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 21:06:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static char	**all_free(char **array, int k)
+static void	all_free(char **array, int k)
 {
 	while (--k >= 0)
 	{
@@ -65,15 +65,15 @@ static char	**needspace(char **array, char const *s, char c, int i)
 			i++;
 		}
 		array[k] = malloc(sizeof(char) * (j + 1));
-			if(!array[k])
-                all_free(array, k);
+		if (!array[k])
+			all_free(array, k);
 		ft_strlcpy(array[k++], s + i - j, j + 1);
 	}
 	array[k] = 0;
 	return (array);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		i;
@@ -81,8 +81,8 @@ char		**ft_split(char const *s, char c)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	array = malloc(sizeof(char*) * (countword(s, c) + 1));
-		if(!array)
-            error_manager("Malloc error\n");
+	array = malloc (sizeof (char *) * (countword(s, c) + 1));
+	if (!array)
+		error_manager("Malloc error\n");
 	return (needspace(array, s, c, i));
 }

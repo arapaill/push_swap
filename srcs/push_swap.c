@@ -12,9 +12,9 @@
 
 #include "ft_push_swap.h"
 
-static void		push_max(t_list **li_a, t_list **li_b, int m, t_info *info)
+static void	push_max(t_list **li_a, t_list **li_b, int m, t_info *info)
 {
-	int	f;
+	int		f;
 
 	f = 0;
 	if ((*li_b)->content < m)
@@ -38,23 +38,31 @@ static void		push_max(t_list **li_a, t_list **li_b, int m, t_info *info)
 		do_pa(li_a, li_b);
 }
 
-static void		push_a(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
+static t_data	*needspace(t_list **li_b, t_data *data)
+{
+	data->flags_a = 0;
+	data->flags_b = 0;
+	data->max_b = find_max_skip(*li_b, -2147483648);
+	data->max_a = find_max_skip(*li_b, data->max_b);
+	data->pos_a = find_pos(data->max_b, *li_b);
+	if (data->max_a != -2147483648)
+		data->pos_b = find_pos(data->max_a, *li_b);
+	return (data);
+}
+
+static void	push_a(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
 {
 	while (info->size_b)
 	{
-		data->flags_a = 0;
-		data->flags_b = 0;
-		data->max_b = find_max_skip(*li_b, -2147483648);
-		data->max_a = find_max_skip(*li_b, data->max_b);
-		if ((data->pos_a = find_pos(data->max_b, *li_b)) < info->size_b / 2)
+		data = needspace(li_b, data);
+		if (data->pos_a < info->size_b / 2)
 			data->flags_a = 1;
-		if (data->max_a != -2147483648 && (data->pos_b =
-			find_pos(data->max_a, *li_b)) < info->size_b / 2)
+		if (data->max_a != -2147483648 && (data->pos_b) < info->size_b / 2)
 			data->flags_b = 1;
 		info->flags = data->flags_a;
-		if (data->max_a != -2147483648 && data->flags_a == data->flags_b &&
-				((data->pos_a > data->pos_b && data->flags_a) ||
-				(data->pos_a < data->pos_b && !data->flags_a)))
+		if (data->max_a != -2147483648 && data->flags_a == data->flags_b
+			&& ((data->pos_a > data->pos_b && data->flags_a)
+				|| (data->pos_a < data->pos_b && !data->flags_a)))
 		{
 			push_max(li_a, li_b, data->max_a, info);
 			push_max(li_a, li_b, data->max_b, info);
@@ -67,7 +75,7 @@ static void		push_a(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
 	}
 }
 
-static void		opti_rotation(int tmp, t_list **li_a, t_list **li_b,
+static void	opti_rotation(int tmp, t_list **li_a, t_list **li_b,
 				t_info **info)
 {
 	while (tmp && (*info)->size_a > 2)
@@ -75,8 +83,8 @@ static void		opti_rotation(int tmp, t_list **li_a, t_list **li_b,
 		if ((*li_a)->content <= (*info)->median)
 		{
 			do_pb(li_a, li_b);
-			if ((*li_b)->content < find_median(*li_b, (*info)->size_b) &&
-					(*info)->size_b > 1)
+			if ((*li_b)->content < find_median(*li_b, (*info)->size_b)
+				&& (*info)->size_b > 1)
 			{
 				if ((*li_a)->content > (*info)->median)
 					do_rr(li_a, li_b);
@@ -90,18 +98,21 @@ static void		opti_rotation(int tmp, t_list **li_a, t_list **li_b,
 			do_ra(li_a);
 		tmp--;
 	}
-	//print_all(*li_a, *li_b);
 }
 
-int				resolve(t_list **list_a, t_info *info)
+int	resolve(t_list **list_a, t_info *info)
 {
 	int		tmp;
 	t_list	*list_b;
-	t_data 	*data;
+	t_data	*data;
 
 	list_b = 0;
-	if (!(data = malloc(sizeof(t_data))))
-		return (0);
+	data = malloc (sizeof (t_data));
+	if (!data)
+	{		
+		free_list(*list_a);
+		error_manager("Malloc error\n");
+	}
 	while (info->size_a > 2)
 	{
 		info->median = find_median(*list_a, info->size_a);

@@ -19,19 +19,19 @@
 # include <unistd.h>
 # include <string.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_stack
+typedef struct s_stack
 {
 	t_list			*a;
 	t_list			*b;
 }					t_stack;
 
-typedef	struct		s_info
+typedef struct s_info
 {
 	int				median;
 	int				size_b;
@@ -40,7 +40,7 @@ typedef	struct		s_info
 
 }					t_info;
 
-typedef	struct		s_data
+typedef struct s_data
 {
 	int				max_a;
 	int				max_b;
@@ -53,19 +53,20 @@ typedef	struct		s_data
 /*
 ** main
 */
-int		ft_istri(t_list *a);
 
+int					ft_istri(t_list *a);
 
 /*
 ** Errors 
 */
-void    			errors(char **table);
+void				errors(char **table);
 void				error_manager(char *error);
 void				space_check(char *str);
 
 /*
 ** utils
 */
+
 void				ft_putstr(char *s, int fd);
 int					ft_isdigit(int c);
 int					ft_strcmp(char *s1, char *s2);
@@ -104,8 +105,8 @@ void				ft_rotate(t_list **list);
 void				do_rrr(t_list **list_a, t_list **list_b);
 void				do_rr(t_list **list_a, t_list **list_b);
 void				ft_double_rotate(t_list **list);
-void				do_pa(t_list **list_a, t_list  **list_b);
-void				do_pb(t_list **list_a, t_list  **list_b);
+void				do_pa(t_list **list_a, t_list **list_b);
+void				do_pb(t_list **list_a, t_list **list_b);
 void				do_sa(t_list *list);
 void				do_sb(t_list *list);
 void				do_ra(t_list **list);
@@ -113,23 +114,21 @@ void				do_rb(t_list **list);
 void				do_rra(t_list **list);
 void				do_rrb(t_list **list);
 
-
 /*
 ** push_swap
 */
-void   			push_swap(t_list **list_a, t_info *info);
-int				resolve(t_list **list_a, t_info *info);
-void    		hardcoding(int size, t_list **list_a);
-int				find_pos(int n, t_list *list);
-long int    	find_max_skip(t_list *list, int skip);
-long int    	find_max(t_list **list);
-long int   		find_min(t_list **list);
 
-
+void				push_swap(t_list **list_a, t_info *info);
+int					resolve(t_list **list_a, t_info *info);
+void				hardcoding(int size, t_list **list_a);
+int					find_pos(int n, t_list *list);
+long int			find_max_skip(t_list *list, int skip);
+long int			find_max(t_list **list);
+long int			find_min(t_list **list);
 
 /*
 ** find_median
 */
 
-int			find_median(t_list *list, int size);
+int					find_median(t_list *list, int size);
 #endif

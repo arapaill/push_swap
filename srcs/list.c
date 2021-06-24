@@ -6,27 +6,27 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:55:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 21:10:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_push_swap.h"
 
-t_list		*ft_ps_lstnew(int	content)
+t_list	*ft_ps_lstnew(int	content)
 {
 	t_list	*list;
 
-	list = (t_list *)malloc(sizeof(t_list));
-	if(!list)
+	list = (t_list *)malloc (sizeof (t_list));
+	if (!list)
 		error_manager("Malloc error\n");
 	list->content = content;
 	list->next = NULL;
 	return (list);
 }	
 
-void		free_list(t_list *a)
+void	free_list(t_list *a)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	while (a)
 	{
@@ -46,7 +46,7 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void		ft_ps_lstadd(t_list **alst, t_list *new)
+void	ft_ps_lstadd(t_list **alst, t_list *new)
 {
 	if (new == NULL)
 		return ;
@@ -56,9 +56,9 @@ void		ft_ps_lstadd(t_list **alst, t_list *new)
 		ft_lstlast(*alst)->next = new;
 }
 
-int		ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	int i;
+	int	i;
 
 	if (lst == NULL)
 		return (0);

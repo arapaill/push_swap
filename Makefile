@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC = 	srcs/ps_utils.c srcs/errors.c srcs/main.c srcs/utils.c srcs/list.c\
 		srcs/stack_init.c srcs/ft_split.c srcs/push_swap.c\
 		srcs/do_ope_rotate.c srcs/find_median.c srcs/resolve_less_5.c srcs/ft_atoi.c\

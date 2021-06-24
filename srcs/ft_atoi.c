@@ -6,26 +6,26 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 17:06:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:54:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 20:56:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static int		ispace(const char *str, int *j)
+static int	ispace(const char *str, int *j)
 {
-	int						i;
-	int						neg;
+	int					i;
+	int					neg;
 
 	i = 0;
 	neg = 0;
-	while (str[i] == '\0' ||
-			str[i] == '\t' ||
-			str[i] == '\n' ||
-			str[i] == '\v' ||
-			str[i] == '\f' ||
-			str[i] == '\r' ||
-			str[i] == ' ')
+	while (str[i] == '\0'
+		|| str[i] == '\t'
+		|| str[i] == '\n'
+		|| str[i] == '\v'
+		|| str[i] == '\f'
+		|| str[i] == '\r'
+		|| str[i] == ' ')
 		i++;
 	if (str[i] == '-')
 	{
@@ -38,11 +38,11 @@ static int		ispace(const char *str, int *j)
 	return (neg);
 }
 
-long long			ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int			i;
-	int			neg;
-	unsigned long long 	n;
+	int					i;
+	int					neg;
+	unsigned long long	n;
 	unsigned long long	min;
 
 	min = 2147483648;
@@ -57,7 +57,7 @@ long long			ft_atoi(const char *str)
 	}
 	n = n / 10;
 	if (n >= (min + 1) && neg == 1)
-	error_manager("error, number too small\n");
+		error_manager("error, number too small\n");
 	else if (n >= min && neg == 0)
 		error_manager("error, number too big\n");
 	if (neg == 1)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   ope_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:37:11 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:11:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 21:17:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_double_rotate(t_list **list)
 	}
 	cp->next = NULL;
 	tmp->next = *list;
-	*list= tmp;
+	*list = tmp;
 }
 
 void	do_rr(t_list **list_a, t_list **list_b)
@@ -54,7 +54,6 @@ void	ft_rotate(t_list **list)
 	tmp->next = NULL;
 	*list = cp;
 }
-
 
 void	do_rrr(t_list **list_a, t_list **list_b)
 {

@@ -6,16 +6,16 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:05:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:28:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 20:52:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_push_swap.h"
 
-void		sort_tab(int *tab, int n)
+void	sort_tab(int *tab, int n)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -32,7 +32,7 @@ void		sort_tab(int *tab, int n)
 	}
 }
 
-int			find_median(t_list *list, int size)
+int	find_median(t_list *list, int size)
 {
 	int		i;
 	int		*tab;
