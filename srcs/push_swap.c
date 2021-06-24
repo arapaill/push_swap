@@ -111,5 +111,6 @@ int				resolve(t_list **list_a, t_info *info)
 	do_pb(list_a, &list_b);
 	info->size_b += 2;
 	push_a(list_a, &list_b, info, data);
+	free_list(*list_a);
 	return (1);
 }

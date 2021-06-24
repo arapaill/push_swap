@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:43:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/10 17:11:04 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:54:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_isint(char **table)
 	{
 		while (table[i][j])
 		{
-			if (table[i][j] == '-')
+			if (table[i][j] == '-' || table[i][j] == '+')
 				j++;
 			if (ft_isdigit(table[i][j]) == 0)
 				error_manager("Error : one argument or more are not int\n");
@@ -67,7 +67,7 @@ void		space_check(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if(!ft_isdigit(str[i]) && str[i] != ' ')
+		if(!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '-' && str[i] != '+')
 			error_manager("error : only use spaces and numbers\n");
 		i++;
 	}

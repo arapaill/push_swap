@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:05:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/14 16:09:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:28:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int			find_median(t_list *list, int size)
 
 	i = 0;
 	tab = malloc(sizeof(int) * size);
-   // print_list(list);
 	while (list->next)
 	{
 		tab[i] = list->content;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:04:44 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:50:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ void	case_5(t_list **stack_a, t_list **stack_b)
 	while (ft_lstsize((*stack_a)) != 4)
 	{
 		max = find_max(stack_a);
-		//printf("max = %li\n", max);
 		while ((*stack_a)->content != max)
 			do_ra(stack_a);
 		if ((*stack_a)->content == max)
 			do_pb(stack_a, stack_b);
-		//printf("size : %li\n", ft_lstsize((*stack_a)));
 	}
 	case_4(stack_a, stack_b);
 	do_pa(stack_a, stack_b);

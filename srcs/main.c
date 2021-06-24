@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 17:15:26 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:56:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 void    push_swap(t_list **list_a, t_info *info)
 {
 	if (ft_istri(*list_a))
+    {
+        free_list(*list_a);
 		error_manager("\n");
+    }
 	info->size_a = ft_lstsize(*list_a);
     info->size_b = 0;
     if(info->size_a <= 5)
@@ -46,7 +49,7 @@ char    **table_to_table(int ac, char **av)
     int     j;
 
     i = 0;
-    j = 0;
+    j = -1;
     table = malloc(sizeof(char**) * (ac));
 	if(!table)
         error_manager("Malloc error");
@@ -55,12 +58,9 @@ char    **table_to_table(int ac, char **av)
         table[i] = malloc(sizeof(char *) * ft_strlen(av[i + 1]));
         if(!table[i])
             error_manager("Malloc error\n");
-        while (av[i + 1][j])
-        {
+        while (av[i + 1][++j])
             table[i][j] = av[i + 1][j];
-            j++;
-        }
-        j = 0;
+        j = -1;
         i++;
     }
     table[i] = 0;
@@ -101,5 +101,5 @@ int     main(int ac, char **av)
         error_manager("Malloc error\n");
     addstack(size, table, &list_a);
     push_swap(&list_a, info);
-    return(0);
+    exit(0);
 }
