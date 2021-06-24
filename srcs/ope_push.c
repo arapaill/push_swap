@@ -1,49 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_ope.c                                           :+:      :+:    :+:   */
+/*   ope_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 13:15:14 by user42            #+#    #+#             */
-/*   Updated: 2021/06/22 16:45:24 by user42           ###   ########.fr       */
+/*   Created: 2021/06/24 17:11:02 by user42            #+#    #+#             */
+/*   Updated: 2021/06/24 17:11:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	do_sa(t_list *list)
+
+void	do_pa(t_list **list_a, t_list  **list_b)
 {
-	printf("sa\n");
-	ft_swap(list);
+	t_list	*tmp;
+
+	if (!(*list_b))
+		return ;
+	tmp = *list_b;
+	*list_b = (*list_b)->next;
+		tmp->next = *list_a;
+	*list_a = tmp;
+	printf("pa\n");
 }
 
-void	do_sb(t_list *list)
+void	do_pb(t_list **list_a, t_list  **list_b)
 {
-	printf("sb\n");
-	ft_swap(list);
-}
+	t_list	*tmp;
 
-void	do_ra(t_list **list)
-{
-	printf("ra\n");
-	ft_rotate(list);
-}
-
-void	do_rb(t_list **list)
-{
-	printf("rb\n");
-	ft_rotate(list);
-}
-
-void	do_rra(t_list **list)
-{
-	printf("rra\n");
-	ft_double_rotate(list);
-}
-
-void	do_rrb(t_list **list)
-{
-	printf("rrb\n");
-	ft_double_rotate(list);
+	if (!(*list_a))
+		return ;
+	tmp = *list_a;
+	*list_a = (*list_a)->next;
+	tmp->next = *list_b;
+	*list_b = tmp;
+	printf("pb\n");
 }

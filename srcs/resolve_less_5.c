@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/06/22 16:03:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:04:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,41 +23,6 @@ void    case_3(t_list **list_a)
     }
 }
 
-long int    find_min(t_list **list)
-{
-    t_list *begin;
-    int      ret;
-
-    ret = (int)(*list)->content;
-    begin = (*list);
-    while ((*list) != NULL)
-    {
-        if ((*list)->content < ret)
-            ret = (int)(*list)->content;
-        (*list) = (*list)->next;
-    }
-    (*list) = begin;
-    return (ret);
-}
-
-long int    find_max(t_list **list)
-{
-    t_list *begin;
-    int      ret;
-
-    ret = (int)(*list)->content;
-    begin = (*list);
-    while ((*list) != NULL)
-    {
-        if ((*list)->content > ret)
-            ret = (int)(*list)->content;
-        (*list) = (*list)->next;
-    }
-    (*list) = begin;
-    return (ret);
-}
-
-
 void    case_4(t_list **list_a, t_list **list_b)
 {
     int min;
@@ -72,24 +37,23 @@ void    case_4(t_list **list_a, t_list **list_b)
          do_rra(list_a);
 }
 
-void    case_5(t_list **list_a, t_list **list_b)
+void	case_5(t_list **stack_a, t_list **stack_b)
 {
 	long int	max;
 
-	while (ft_lstsize(*list_a) != 3)
+	while (ft_lstsize((*stack_a)) != 4)
 	{
-		max = find_max(list_a);
-		while ((*list_a)->content != max)
-			do_ra(list_a);
-		if ((*list_a)->content == max)
-			do_pb(list_a, list_b);
+		max = find_max(stack_a);
+		//printf("max = %li\n", max);
+		while ((*stack_a)->content != max)
+			do_ra(stack_a);
+		if ((*stack_a)->content == max)
+			do_pb(stack_a, stack_b);
+		//printf("size : %li\n", ft_lstsize((*stack_a)));
 	}
-	case_3(list_a);
-    if ((*list_b)->content > (*list_b)->next->content)
-		do_sb(*list_b);
-	do_pa(list_a, list_b);
-	do_pa(list_a, list_b);
-
+	case_4(stack_a, stack_b);
+	do_pa(stack_a, stack_b);
+    do_ra(stack_a);
 	return ;
 }
 
@@ -98,7 +62,6 @@ void    hardcoding(int size, t_list **list_a)
     t_list *list_b;
 
     list_b = 0;
-    printf("size : %i\n", size);
     if(size == 2)
         do_sa(*list_a);
     else if(size == 3)

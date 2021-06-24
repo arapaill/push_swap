@@ -6,11 +6,23 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/18 14:17:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:16:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_push_swap.h"
+
+t_list		*ft_ps_lstnew(int	content)
+{
+	t_list	*list;
+
+	list = (t_list *)malloc(sizeof(t_list));
+	if(!list)
+		error_manager("Malloc error\n");
+	list->content = content;
+	list->next = NULL;
+	return (list);
+}	
 
 void		free_list(t_list *a)
 {
@@ -24,18 +36,6 @@ void		free_list(t_list *a)
 		a = tmp;
 	}
 }
-
-t_list		*ft_ps_lstnew(int	content)
-{
-	t_list	*list;
-
-	list = (t_list *)malloc(sizeof(t_list));
-	if(!list)
-		error_manager("Malloc error\n");
-	list->content = content;
-	list->next = NULL;
-	return (list);
-}	
 
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -54,32 +54,6 @@ void		ft_ps_lstadd(t_list **alst, t_list *new)
 		*alst = new;
 	else
 		ft_lstlast(*alst)->next = new;
-}
-
-void				print_all(t_list *a, t_list *b)
-{
-	printf("list a :");
-	print_list(a);
-	printf("\n");
-	printf("list b :");
-	print_list(b);
-	printf("\n");
-}
-
-void				print_list(t_list *a)
-{
-	t_list	*tmp;
-	
-	tmp = a;
-	if (tmp)
-	{
-		while (tmp && tmp->next)
-		{
-			printf("%i",tmp->content);
-			tmp = tmp->next;
-		}
-		printf("%i\n",(int)tmp->content);
-	}
 }
 
 int		ft_lstsize(t_list *lst)

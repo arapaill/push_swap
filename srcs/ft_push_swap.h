@@ -117,8 +117,15 @@ void				do_rrb(t_list **list);
 /*
 ** push_swap
 */
-void    push_swap(t_list **list_a, t_info *info);
-void    hardcoding(int size, t_list **list_a);
+void   			push_swap(t_list **list_a, t_info *info);
+int				resolve(t_list **list_a, t_info *info);
+void    		hardcoding(int size, t_list **list_a);
+int				find_pos(int n, t_list *list);
+long int    	find_max_skip(t_list *list, int skip);
+long int    	find_max(t_list **list);
+long int   		find_min(t_list **list);
+
+
 
 /*
 ** find_median

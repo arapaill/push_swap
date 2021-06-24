@@ -6,12 +6,25 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/22 16:48:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 17:15:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_push_swap.h"
 
+
+void    push_swap(t_list **list_a, t_info *info)
+{
+	if (ft_istri(*list_a))
+		error_manager("\n");
+	info->size_a = ft_lstsize(*list_a);
+    info->size_b = 0;
+    if(info->size_a <= 5)
+        hardcoding(info->size_a, list_a);
+    else
+        resolve(list_a, info);
+	print_list(*list_a);
+}
 
 int		ft_istri(t_list *a)
 {
@@ -83,7 +96,6 @@ int     main(int ac, char **av)
         table = table_to_table(ac, av);
     errors(table);
     size = counter(table);
-    //printf("TEST 1\n");
     info = malloc(sizeof(t_info *));
     if(!info)
         error_manager("Malloc error\n");

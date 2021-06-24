@@ -12,17 +12,30 @@
 
 #include "ft_push_swap.h"
 
-void	init_stack(t_stack *stack)
+void				print_all(t_list *a, t_list *b)
 {
-	stack = malloc(sizeof(t_stack));
-	if(!stack)
-		error_manager("Malloc error");
-	stack->a = malloc(sizeof(t_list ));
-	if(!stack->a)
-		error_manager("Malloc error");
-	stack->b = malloc(sizeof(t_list ));
-	if(!stack->b)
-		error_manager("Malloc error");
+	printf("list a :");
+	print_list(a);
+	printf("\n");
+	printf("list b :");
+	print_list(b);
+	printf("\n");
+}
+
+void				print_list(t_list *a)
+{
+	t_list	*tmp;
+	
+	tmp = a;
+	if (tmp)
+	{
+		while (tmp && tmp->next)
+		{
+			printf("%i ",tmp->content);
+			tmp = tmp->next;
+		}
+		printf("%i\n",(int)tmp->content);
+	}
 }
 
 void		addstack(int size, char **table, t_list **list)
@@ -33,7 +46,6 @@ void		addstack(int size, char **table, t_list **list)
 
 	tmp = NULL;
 	i = 0;
-	printf("size : %i\n", size);
 	while (i <= size)
 	{
 		content = ft_atoi(table[i]);
@@ -42,5 +54,4 @@ void		addstack(int size, char **table, t_list **list)
 		free_list(tmp);
 		i++;
 	}
-	print_list((*list));
 }

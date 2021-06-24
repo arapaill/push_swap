@@ -12,24 +12,6 @@
 
 #include "ft_push_swap.h"
 
-
-long int    find_max_skip(t_list *list, int skip)
-{
-   	int	max;
-
-	max = -2147483648;
-	while (list->next)
-	{
-		if (list->content > max && list->content != skip)
-			max = list->content;
-		list = list->next;
-	}
-	if (list->content > max && list->content != skip)
-		max = list->content;
-	return (max);
-}
-
-
 static void		push_max(t_list **li_a, t_list **li_b, int m, t_info *info)
 {
 	int	f;
@@ -54,19 +36,6 @@ static void		push_max(t_list **li_a, t_list **li_b, int m, t_info *info)
 	}
 	if (!f)
 		do_pa(li_a, li_b);
-}
-
-int	find_pos(int n, t_list *list)
-{
-	int	pos;
-
-	pos = 0;
-	while (list->content != n)
-	{
-		list = list->next;
-		pos++;
-	}
-	return (pos);
 }
 
 static void		push_a(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
@@ -130,7 +99,6 @@ int				resolve(t_list **list_a, t_info *info)
 	t_data 	*data;
 
 	list_b = 0;
-	printf("TEST\n");
 	if (!(data = malloc(sizeof(t_data))))
 		return (0);
 	while (info->size_a > 2)
@@ -144,18 +112,4 @@ int				resolve(t_list **list_a, t_info *info)
 	info->size_b += 2;
 	push_a(list_a, &list_b, info, data);
 	return (1);
-}
-
-void    push_swap(t_list **list_a, t_info *info)
-{
-	if (ft_istri(*list_a))
-		return ;
-	info->size_a = ft_lstsize(*list_a);
-    info->size_b = 0;
-    print_list(*list_a);
-    if(info->size_a <= 5)
-        hardcoding(info->size_a, list_a);
-    else
-        resolve(list_a, info);
-	print_list(*list_a);
 }
