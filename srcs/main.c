@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 21:14:33 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/24 22:35:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,56 +25,6 @@ void	push_swap(t_list **list_a, t_info *info)
 		hardcoding(info->size_a, list_a);
 	else
 		resolve(list_a, info);
-}
-
-int	ft_istri(t_list *a)
-{
-	while (a)
-	{
-		if (a->next)
-		{
-			if ((a->content) > (a->next->content))
-				return (0);
-		}
-		a = a->next;
-	}
-	return (1);
-}
-
-char	**table_to_table(int ac, char **av)
-{
-	char	**table;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = -1;
-	table = malloc (sizeof (char **) * (ac));
-	if (!table)
-		error_manager("Malloc error");
-	while (i + 1 < ac)
-	{
-		table[i] = malloc (sizeof (char *) * ft_strlen(av[i + 1]));
-		if (!table[i])
-			error_manager("Malloc error\n");
-		while (av[i + 1][++j])
-			table[i][j] = av[i + 1][j];
-		j = -1;
-		i++;
-	}
-	table[i] = 0;
-	return (table);
-}
-
-int	counter(char **table)
-{
-	int		i;
-
-	i = 0;
-	while (table[i])
-		i++;
-	i--;
-	return (i);
 }
 
 int	main(int ac, char **av)

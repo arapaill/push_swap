@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include "../GNL/get_next_line.h"
 
 typedef struct s_list
 {
@@ -55,6 +56,8 @@ typedef struct s_data
 */
 
 int					ft_istri(t_list *a);
+int					counter(char **table);
+char				**table_to_table(int ac, char **av);
 
 /*
 ** Errors 
@@ -107,6 +110,8 @@ void				do_rr(t_list **list_a, t_list **list_b);
 void				ft_double_rotate(t_list **list);
 void				do_pa(t_list **list_a, t_list **list_b);
 void				do_pb(t_list **list_a, t_list **list_b);
+void				push_a(t_list **list_a, t_list **list_b);
+void				push_b(t_list **list_a, t_list **list_b);
 void				do_sa(t_list *list);
 void				do_sb(t_list *list);
 void				do_ra(t_list **list);

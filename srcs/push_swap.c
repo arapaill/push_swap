@@ -50,7 +50,7 @@ static t_data	*needspace(t_list **li_b, t_data *data)
 	return (data);
 }
 
-static void	push_a(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
+static void	push_a_ps(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
 {
 	while (info->size_b)
 	{
@@ -122,7 +122,7 @@ int	resolve(t_list **list_a, t_info *info)
 	do_pb(list_a, &list_b);
 	do_pb(list_a, &list_b);
 	info->size_b += 2;
-	push_a(list_a, &list_b, info, data);
+	push_a_ps(list_a, &list_b, info, data);
 	free_list(*list_a);
 	return (1);
 }
