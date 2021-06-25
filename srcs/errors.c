@@ -6,15 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:43:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 20:51:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:56:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	error_manager(char *error)
+void	error_manager(void)
 {
-	ft_putstr(error, 1);
+	ft_putstr("Error\n", 1);
 	exit(2);
 }
 
@@ -32,7 +32,10 @@ void	ft_isint(char **table)
 			if (table[i][j] == '-' || table[i][j] == '+')
 				j++;
 			if (ft_isdigit(table[i][j]) == 0)
-				error_manager("Error : one argument or more are not int\n");
+			{
+				free_table(table);
+				error_manager();
+			}
 			j++;
 		}
 		j = 0;
@@ -52,7 +55,10 @@ void	dual(char **table)
 		while (table[i])
 		{
 			if (ft_strcmp(table[i], table[j]) == 0 && i != j)
-				error_manager("Error : two arguments or more are the same\n");
+			{
+				free_table(table);
+				error_manager();
+			}
 			i++;
 		}
 		j++;
@@ -69,7 +75,10 @@ void	space_check(char *str)
 	{
 		if (!ft_isdigit(str[i]) && str[i] != ' '
 			&& str[i] != '-' && str[i] != '+')
-			error_manager("error : only use spaces and numbers\n");
+		{
+			free(str);
+			error_manager();
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 22:10:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:25:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,14 @@ void	case_5(t_list **stack_a, t_list **stack_b)
 	median = find_median((*stack_a), ft_lstsize((*stack_a)));
 	while (ft_lstsize((*stack_a)) != 3)
 	{
-		if ((*stack_a)->content < median)
+		if ((*stack_a)->content <= median)
 			do_pb(stack_a, stack_b);
-		if ((*stack_a)->content >= median)
-			do_ra(stack_a);
+		else
+			do_rra(stack_a);
 	}
 	case_3(stack_a);
 	if ((*stack_b)->content < (*stack_b)->next->content)
-	{
 		do_sb(*stack_b);
-	}
 	do_pa(stack_a, stack_b);
 	do_pa(stack_a, stack_b);
 	return ;
@@ -72,4 +70,6 @@ void	hardcoding(int size, t_list **list_a)
 		case_4(list_a, &list_b);
 	else if (size == 5)
 		case_5(list_a, &list_b);
+	free_list(*list_a);
+	free_list(list_b);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 15:05:16 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 20:52:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:33:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void	sort_tab(int *tab, int n)
 	while (i < n - 1)
 	{
 		j = 0;
+		
 		while (j < n - i - 1)
 		{
-			if (tab[j] > tab[j + 1])
+			if (tab[j] && tab[j + 1] && tab[j] > tab[j + 1])
 				lib_swap(&tab[j], &tab[j + 1]);
 			j++;
 		}
@@ -38,7 +39,7 @@ int	find_median(t_list *list, int size)
 	int		*tab;
 
 	i = 0;
-	tab = malloc(sizeof(int) * size);
+	tab = malloc(sizeof(int) * (size + 1));
 	while (list->next)
 	{
 		tab[i] = list->content;

@@ -11,33 +11,35 @@
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-void	print_all(t_list *a, t_list *b)
-{
-	printf("list a :");
-	print_list(a);
-	printf("\n");
-	printf("list b :");
-	print_list(b);
-	printf("\n");
-}
-
-void	print_list(t_list *a)
-{
-	t_list	*tmp;
-
-	tmp = a;
-	if (tmp)
-	{
-		while (tmp && tmp->next)
-		{
-			printf("%i ", tmp->content);
-			tmp = tmp->next;
-		}
-		printf("%i\n", tmp->content);
-	}
-}
-
+/*
+** 
+** void	print_all(t_list *a, t_list *b)
+** {
+** 	printf("list a :");
+** 	print_list(a);
+** 	printf("\n");
+** 	printf("list b :");
+** 	print_list(b);
+** 	printf("\n");
+** }
+** 
+** void	print_list(t_list *a)
+** {
+** 	t_list	*tmp;
+** 
+** 	tmp = a;
+** 	if (tmp)
+** 	{
+** 		while (tmp && tmp->next)
+** 		{
+** 			printf("%i ", tmp->content);
+** 			tmp = tmp->next;
+** 		}
+** 		printf("%i\n", tmp->content);
+** 	}
+** }
+** 
+*/
 void	addstack(int size, char **table, t_list **list)
 {
 	t_list	*tmp;

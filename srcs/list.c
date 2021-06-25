@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 21:10:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:41:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_ps_lstnew(int	content)
 
 	list = (t_list *)malloc (sizeof (t_list));
 	if (!list)
-		error_manager("Malloc error\n");
+		error_manager();
 	list->content = content;
 	list->next = NULL;
 	return (list);
@@ -39,7 +39,7 @@ void	free_list(t_list *a)
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
 	while (lst->next != NULL)
 		lst = lst->next;
@@ -48,9 +48,9 @@ t_list	*ft_lstlast(t_list *lst)
 
 void	ft_ps_lstadd(t_list **alst, t_list *new)
 {
-	if (new == NULL)
+	if (!new)
 		return ;
-	if (*alst == NULL)
+	if (!(*alst))
 		*alst = new;
 	else
 		ft_lstlast(*alst)->next = new;
@@ -60,10 +60,10 @@ int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	if (lst == NULL)
+	if (!lst)
 		return (0);
 	i = 0;
-	while (lst != NULL)
+	while (lst)
 	{
 		lst = lst->next;
 		i++;

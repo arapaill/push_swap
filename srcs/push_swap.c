@@ -73,6 +73,8 @@ static void	push_a_ps(t_list **li_a, t_list **li_b, t_info *info, t_data *data)
 			push_max(li_a, li_b, data->max_b, info);
 		info->size_b--;
 	}
+	free_list(*li_a);
+	free_list(*li_b);
 }
 
 static void	opti_rotation(int tmp, t_list **li_a, t_list **li_b,
@@ -111,7 +113,7 @@ int	resolve(t_list **list_a, t_info *info)
 	if (!data)
 	{		
 		free_list(*list_a);
-		error_manager("Malloc error\n");
+		error_manager();
 	}
 	while (info->size_a > 2)
 	{
@@ -123,6 +125,6 @@ int	resolve(t_list **list_a, t_info *info)
 	do_pb(list_a, &list_b);
 	info->size_b += 2;
 	push_a_ps(list_a, &list_b, info, data);
-	free_list(*list_a);
-	return (1);
+	free(data);
+	return (0);
 }

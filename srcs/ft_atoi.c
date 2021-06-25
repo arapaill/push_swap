@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 17:06:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 20:56:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 14:01:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ long long	ft_atoi(const char *str)
 	}
 	n = n / 10;
 	if (n >= (min + 1) && neg == 1)
-		error_manager("error, number too small\n");
+		error_manager();
 	else if (n >= min && neg == 0)
-		error_manager("error, number too big\n");
+		error_manager();
 	if (neg == 1)
 		return (n * (-1));
 	else

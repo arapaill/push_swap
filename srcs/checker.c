@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 22:29:03 by user42            #+#    #+#             */
-/*   Updated: 2021/06/25 11:21:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 14:55:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 
 	list_b = 0;
 	if (ac == 1)
-		error_manager("too few argument\n");
+		error_manager();
 	else if (ac == 2)
 	{
 		space_check(av[1]);
@@ -101,9 +101,10 @@ int	main(int ac, char **av)
 	addstack(counter(table), table, &list_a);
 	checker(&list_a, &list_b);
 	if (ft_istri(list_a) && !ft_lstsize(list_b))
-		printf("OK\n");
+		write(1, "OK\n", 3);
 	else
-		printf("KO\n");
+		write(1, "KO\n", 3);
 	free_list(list_a);
+	free_table(table);
 	exit(0);
 }

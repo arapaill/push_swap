@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:37:11 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 21:17:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 14:04:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	do_rr(t_list **list_a, t_list **list_b)
 {
 	ft_rotate(list_a);
 	ft_rotate(list_b);
-	printf("rr\n");
+	ft_putstr("rr\n", 1);
 }
 
 void	ft_rotate(t_list **list)
@@ -59,5 +59,5 @@ void	do_rrr(t_list **list_a, t_list **list_b)
 {
 	ft_double_rotate(list_a);
 	ft_double_rotate(list_b);
-	printf("rrr\n");
+	ft_putstr("rrr\n", 1);
 }

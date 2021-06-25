@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 17:08:42 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 21:18:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 14:04:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	do_ss(t_list **list_a, t_list **list_b)
 {
 	ft_swap(*list_a);
 	ft_swap(*list_b);
-	printf("ss\n");
+	ft_putstr("ss\n", 1);
 }
 
 void	do_sa(t_list *list)
 {
-	printf("sa\n");
+	ft_putstr("sa\n", 1);
 	ft_swap(list);
 }
 
 void	do_sb(t_list *list)
 {
-	printf("sb\n");
+	ft_putstr("sb\n", 1);
 	ft_swap(list);
 }

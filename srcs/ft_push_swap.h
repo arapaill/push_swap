@@ -58,12 +58,13 @@ typedef struct s_data
 int					ft_istri(t_list *a);
 int					counter(char **table);
 char				**table_to_table(int ac, char **av);
+void				free_table(char **table);
 
 /*
 ** Errors 
 */
 void				errors(char **table);
-void				error_manager(char *error);
+void				error_manager(void);
 void				space_check(char *str);
 
 /*

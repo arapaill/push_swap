@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 10:25:22 by user42            #+#    #+#             */
-/*   Updated: 2021/06/24 22:35:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:52:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 void	push_swap(t_list **list_a, t_info *info)
 {
-	if (ft_istri(*list_a))
+	printf("TEST 1\n");
+	if (list_a && ft_istri(*list_a))
 	{
 		free_list(*list_a);
-		error_manager("\n");
+		free(info);
+		exit(0);
 	}
+	printf("TEST 2\n");
 	info->size_a = ft_lstsize(*list_a);
+	printf("TEST 3\n");
 	info->size_b = 0;
-	if (info->size_a <= 5)
+	printf("TEST 4\n");
+	if (list_a && info->size_a <= 5)
 		hardcoding(info->size_a, list_a);
-	else
+	else if (list_a)
 		resolve(list_a, info);
+	printf("TEST 5\n");
 }
 
 int	main(int ac, char **av)
@@ -35,7 +41,7 @@ int	main(int ac, char **av)
 	int		size;
 
 	if (ac == 1)
-		error_manager("too few argument\n");
+		exit(0);
 	else if (ac == 2)
 	{
 		space_check(av[1]);
@@ -45,10 +51,12 @@ int	main(int ac, char **av)
 		table = table_to_table(ac, av);
 	errors(table);
 	size = counter(table);
+	addstack(size, table, &list_a);
+	free_table(table);
 	info = malloc (sizeof (t_info *));
 	if (!info)
-		error_manager("Malloc error\n");
-	addstack(size, table, &list_a);
+		error_manager();
 	push_swap(&list_a, info);
+	free(info);
 	exit(0);
 }
