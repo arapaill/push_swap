@@ -27,7 +27,8 @@ $(NAME):
 			@$(CC) $(CFLAGS) ${SRC} srcs/main.c -o $(NAME)
 			@echo "\033[32m[✓]\033[0m		[$(NAME) compiled]"
 $(BONUS):	
-			@make all
+			@$(CC) $(CFLAGS) ${SRC} srcs/main.c -o $(NAME)
+			@echo "\033[32m[✓]\033[0m		[$(NAME) compiled]"
 			@$(CC) $(CFLAGS) ${SRC} ${SRC_BONUS} -o $(BONUS)
 			@echo "\033[32m[✓]\033[0m		[$(BONUS) compiled]"
 
