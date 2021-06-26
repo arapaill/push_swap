@@ -47,6 +47,7 @@ void	addstack(int size, char **table, t_list **list)
 	int		i;
 
 	tmp = NULL;
+	*list = NULL;
 	i = 0;
 	while (i <= size)
 	{
@@ -56,4 +57,5 @@ void	addstack(int size, char **table, t_list **list)
 		free_list(tmp);
 		i++;
 	}
+	ft_lstlast(*list)->next = NULL;
 }

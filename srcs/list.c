@@ -6,19 +6,22 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:06:57 by user42            #+#    #+#             */
-/*   Updated: 2021/06/25 15:41:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/26 11:32:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_push_swap.h"
 
-t_list	*ft_ps_lstnew(int	content)
+t_list	*ft_ps_lstnew(int content)
 {
 	t_list	*list;
 
 	list = (t_list *)malloc (sizeof (t_list));
 	if (!list)
+	{
+		free_list(list);
 		error_manager();
+	}
 	list->content = content;
 	list->next = NULL;
 	return (list);

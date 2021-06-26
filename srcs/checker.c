@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 22:29:03 by user42            #+#    #+#             */
-/*   Updated: 2021/06/25 14:55:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/26 11:40:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	checker(t_list **list_a, t_list **list_b)
 		free(line);
 		ret = get_next_line(0, &line);
 	}
+	free(line);
 	return (1);
 }
 

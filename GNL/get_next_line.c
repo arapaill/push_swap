@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 07:18:19 by user42            #+#    #+#             */
-/*   Updated: 2021/06/25 10:50:34 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/26 11:40:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	dup_n_free(char	**str, char	**line, int ret)
 		free(*str);
 		return (ret);
 	}
+	free(*str);
 	*line = ft_strdup("");
 	return (ret);
 }
