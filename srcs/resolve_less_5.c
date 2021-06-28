@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/06/25 15:25:34 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/28 10:55:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,25 @@ void	case_4(t_list **list_a, t_list **list_b)
 
 void	case_5(t_list **stack_a, t_list **stack_b)
 {
-	long int	median;
+	int	median;
 
 	median = find_median((*stack_a), ft_lstsize((*stack_a)));
 	while (ft_lstsize((*stack_a)) != 3)
 	{
-		if ((*stack_a)->content <= median)
+		if ((*stack_a)->content < median)
 			do_pb(stack_a, stack_b);
-		else
-			do_rra(stack_a);
+		else if ((*stack_a)->content >= median)
+			do_ra(stack_a);
 	}
 	case_3(stack_a);
 	if ((*stack_b)->content < (*stack_b)->next->content)
 		do_sb(*stack_b);
 	do_pa(stack_a, stack_b);
+	if ((*stack_a)->content > (*stack_a)->next->content)
+		do_sa(*stack_a);
 	do_pa(stack_a, stack_b);
+	if ((*stack_a)->content > (*stack_a)->next->content)
+		do_sa(*stack_a);
 	return ;
 }
 

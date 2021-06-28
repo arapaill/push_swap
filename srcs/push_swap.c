@@ -113,6 +113,7 @@ int	resolve(t_list **list_a, t_info *info)
 	if (!data)
 	{		
 		free_list(*list_a);
+		free(info);
 		error_manager();
 	}
 	while (info->size_a > 2)
@@ -125,6 +126,7 @@ int	resolve(t_list **list_a, t_info *info)
 	do_pb(list_a, &list_b);
 	info->size_b += 2;
 	push_a_ps(list_a, &list_b, info, data);
+	free(list_b);
 	free(data);
 	return (0);
 }

@@ -22,24 +22,26 @@
 ** 	print_list(b);
 ** 	printf("\n");
 ** }
-** 
-** void	print_list(t_list *a)
-** {
-** 	t_list	*tmp;
-** 
-** 	tmp = a;
-** 	if (tmp)
-** 	{
-** 		while (tmp && tmp->next)
-** 		{
-** 			printf("%i ", tmp->content);
-** 			tmp = tmp->next;
-** 		}
-** 		printf("%i\n", tmp->content);
-** 	}
-** }
-** 
+**
 */
+/*
+**  void	print_list(t_list *a)
+**  {
+**  	t_list	*tmp;
+** 
+**  	tmp = a;
+**  	if (tmp)
+**  	{
+**  		while (tmp && tmp->next)
+**  		{
+**  			printf("%i ", tmp->content);
+**  			tmp = tmp->next;
+**  		}
+**  		printf("%i\n", tmp->content);
+**  	}
+**  }
+*/
+
 void	addstack(int size, char **table, t_list **list)
 {
 	t_list	*tmp;
@@ -57,5 +59,4 @@ void	addstack(int size, char **table, t_list **list)
 		free_list(tmp);
 		i++;
 	}
-	ft_lstlast(*list)->next = NULL;
 }
